@@ -109,14 +109,6 @@ def blackjack():
     deck1 = Deck()
     deck1.shuffle()
     
-    # Deal initial hand
-    for _ in range(2):
-        player.add_card(deck1.deal_one())
-        dealer.add_card(deck1.deal_one())
-    
-    dealer.sum_of_hand()
-    player.sum_of_hand()
-    
     print('### IT\'S TIME TO PLAY THE GAME ###\n\n')
       
     blackjack_game = True
@@ -128,6 +120,17 @@ def blackjack():
         current_dealer_hand = 0
         current_player_hand = 0
         player_decision = ''
+
+        deck1 = Deck()
+        deck1.shuffle()
+
+        # Deal initial hand
+        for _ in range(2):
+            player.add_card(deck1.deal_one())
+            dealer.add_card(deck1.deal_one())
+        
+            dealer.sum_of_hand()
+            player.sum_of_hand()
         
         print('Dealer Hand:')
         dealer.show_initial_dealer_hand()
@@ -193,18 +196,17 @@ def blackjack():
                                         break
 
                                 if current_player_hand <= 21:
+                                    player_decision = ''
                                     break
+                                else:
+                                    continue
                         
-                            # else:
-                            #     print('\nPlayer is BUST!')
-                            #     print(f'Dealer wins and Player lost ${bet_ammount}')
-                                
-                            #     player_turn = False
-                            #     dealer_turn = False
-                            #     blackjack_game = False
-                                
-                            #     break
-                        
+                            if player_turn is False:
+                                break
+
+                        if player_turn:
+                            continue
+
                     elif current_player_hand == 21:
                         print('\nPlayer WINS!')
                         print(f'Player wins ${bet_ammount * 2}')
@@ -216,9 +218,10 @@ def blackjack():
                         
                     else:
                         player_decision = ''
-                        break
+                        continue
                 
                 else:
+                    current_player_hand = player.sum_of_hand()
                     player_turn = False
         
         while dealer_turn:
@@ -236,6 +239,7 @@ def blackjack():
                 print('\nDealer is BUST!')
                 print(f'Player wins ${bet_ammount * 2}')
                 
+                player.balance += (bet_ammount * 2)
                 dealer_turn = False
                 blackjack_game = False
                 
@@ -250,6 +254,8 @@ def blackjack():
                 continue
             
             elif current_dealer_hand >= 17 and current_dealer_hand < 21:
+                print(current_dealer_hand)
+                print(current_player_hand)
                 if current_dealer_hand >= current_player_hand:
                     print(f'\nDealer wins and Player lost ${bet_ammount}')
                     
@@ -257,7 +263,6 @@ def blackjack():
                     blackjack_game = False
                 else:
                     print(f'\nPlayer wins ${bet_ammount * 2}')
-                    
                     
                     player.balance += (bet_ammount * 2)
                     dealer_turn = False
