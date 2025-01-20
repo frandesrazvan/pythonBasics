@@ -42,9 +42,7 @@ while page_existent:
         print('Last page found')
         break
 
-    authors = soup.select('.author')
-
-    for author in authors:
+    for author in soup.select('.author'):
         unique_authors.add(author.text)
 
     page += 1

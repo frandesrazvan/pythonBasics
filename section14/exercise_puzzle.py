@@ -3,8 +3,6 @@ import os
 import re
 
 shutil.unpack_archive('unzip_me_for_instructions.zip', 'instructions', 'zip')
-
-
 search_file = 'C:\\Users\\RFRANDES\\Downloads\\automation repo\\python\\TheCompletePythonBootcampFromZeroToHeroInPython\\section14\\instructions'
 for folder, sub_folders, files in os.walk(search_file):
     # Iterate through the files in the folder

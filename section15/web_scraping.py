@@ -17,11 +17,12 @@ import bs4
 # for ele in soup.select('.vector-toc-text'):
 #     print(ele.text)
 
-res = requests.get('https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)')
-soup = bs4.BeautifulSoup(res.text, 'lxml')
+# res = requests.get('https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)')
+# soup = bs4.BeautifulSoup(res.text, 'lxml')
 
-computer = soup.select('#mw-content-text > div.mw-content-ltr.mw-parser-output > table.infobox > tbody > tr:nth-child(1) > td > span > a > img')[0]['src']
-image_link = requests.get('https:' + computer)
-f = open('my_computer_image.jpg', 'wb')
-f.write(image_link.content)
-f.close()
+# computer = soup.select('#mw-content-text > div.mw-content-ltr.mw-parser-output > table.infobox > tbody > tr:nth-child(1) > td > span > a > img')[0]['src']
+# image_link = requests.get('https:' + computer)
+# f = open('my_computer_image.jpg', 'wb')
+# f.write(image_link.content)
+# f.close()
+

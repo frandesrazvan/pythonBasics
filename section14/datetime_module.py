@@ -29,4 +29,4 @@ datetime1 = datetime(2025, 11, 3, 22, 0)
 datetime2 = datetime(2023, 5, 2, 12, 0)
 mydiff = datetime1 - datetime2
 print(mydiff) # 916 days, 10:00:00
-print(mydiff.total_seconds())
+print(mydiff.total_seconds()) # 79178400.0
